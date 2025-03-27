@@ -1,8 +1,22 @@
 import styles from "./CardFront.module.css"
+import cardTemplateFront from "/images/bg-card-front.png"
+import cardLogo from "/images/card-logo.svg"
 
 const CardFront = () => {
   return (
-    <div>CardFront</div>
+    <div className={styles.cardFront}>
+      <img src={cardTemplateFront} alt="Card Front" className={styles.card} />
+
+      <div className={styles.cardFront__logo}>
+        <img src={cardLogo} alt="Card Logo" />
+      </div>
+
+      <div className={styles.cardFront__wrapper}>
+        <p className={styles.cardFront__number}>---- ---- ---- ----</p>
+        <p className={styles.cardFront__name}>---</p>
+        <p className={styles.cardFront__expDate}>--/--</p>
+      </div>
+    </div>
   )
 }
 

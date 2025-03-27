@@ -1,0 +1,45 @@
+.cardBack {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    margin-inline: 20px;
+    display: flex;
+}
+
+.card {
+    width: 290px;
+}
+
+.cardBack__cvc {
+    position: absolute;
+    top: 44%;
+    right: 12%;
+    text-align: right;
+    color: var(--color-white);
+    font-size: 0.6em;
+    pointer-events: none;
+}
+
+@media screen and (min-width: 768px) {
+    .card {
+        width: 340px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .cardBack {
+        right: unset;
+        left: 40%;
+        top: 52%;
+        margin: 0;
+        width: 440px;
+    }
+
+    .card {
+        width: 440px;
+    }
+
+    .cardBack__cvc {
+        font-size: 1em;
+    }
+}

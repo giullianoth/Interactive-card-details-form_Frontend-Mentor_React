@@ -1,0 +1,75 @@
+.cardFront {
+    position: absolute;
+    top: 140px;
+    left: 0;
+    margin-inline: 20px;
+    display: flex;
+}
+
+.card {
+    width: 290px;
+}
+
+.cardFront__logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+}
+
+.cardFront__wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cardFront__number {
+    flex-basis: 100%;
+    color: var(--color-white);
+    pointer-events: none;
+}
+
+.cardFront__name, .cardFront__expDate {
+    color: var(--color-white);
+    font-size: 0.6em;
+    pointer-events: none;
+}
+
+@media screen and (min-width: 768px) {
+    .cardFront {
+        top: 150px;
+    }
+
+    .card {
+        width: 340px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .cardFront {
+        top: unset;
+        bottom: 52%;
+        left: 30%;
+        margin: 0;
+        width: 440px;
+    }
+
+    .card {
+        width: 440px;
+    }
+
+    .cardFront__number {
+        font-size: 1.6em;
+    }
+
+    .cardFront__name, .cardFront__expDate {
+        font-size: 1em;
+    }
+}
