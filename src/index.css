@@ -23,7 +23,7 @@
 
   /* TRANSITIONS AND ANIMATIONS */
   --transition-duration-default: 0.3s;
-  --transition: all var(var(--transition-duration-default)) ease;
+  --transition: all var(--transition-duration-default) ease;
 }
 
 * {

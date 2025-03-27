@@ -1,0 +1,26 @@
+.confirmed {
+    width: 100%;
+    text-align: center;
+}
+
+.confirmed img {
+    margin-bottom: 40px;
+}
+
+.confirmed button {
+    width: 100%;
+}
+
+.confirmed__title {
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.confirmed__subtitle {
+    letter-spacing: normal;
+    color: var(--color-dark-grayish-violet);
+    margin-bottom: 40px;
+}

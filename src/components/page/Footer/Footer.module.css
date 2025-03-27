@@ -1,0 +1,19 @@
+.attribution {
+    font-size: 11px;
+    text-align: center;
+    letter-spacing: normal;
+    padding: 20px;
+    color: var(--color-dark-grayish-violet);
+}
+
+.attribution a {
+    color: var(--color-very-dark-violet);
+}
+
+@media screen and (min-width: 1200px) {
+    .attribution {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}
