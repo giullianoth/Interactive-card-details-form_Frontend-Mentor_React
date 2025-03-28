@@ -1,12 +1,29 @@
 import styles from "./CardForm.module.css"
 
-const CardForm = () => {
+export interface CardFormProps {
+  nameValue: string
+  validateName: Function
+  nameError: boolean
+  nameErrorMessage: string
+  nameIsValid: boolean
+}
+
+const CardForm = ({ nameValue, validateName, nameError, nameErrorMessage, nameIsValid }: CardFormProps) => {
   return (
     <form className={styles.cardForm} autoComplete="off">
       <div className={styles.cardForm__row}>
         <label htmlFor="name" className={styles.cardForm__label}>Cardholder Name</label>
-        <input type="text" id="name" placeholder="e.g. Jane Appleseed" />
-        <p className={styles.cardForm__message}></p>
+
+        <input
+          type="text"
+          id="name"
+          placeholder="e.g. Jane Appleseed"
+          value={nameValue}
+          onChange={event => validateName("input", event.target.value)}
+          onBlur={event => validateName("focusout", event.target.value)}
+          className={(nameError ? styles.error : "") + (nameIsValid ? styles.valid : "")} />
+
+        <p className={styles.cardForm__message}>{nameErrorMessage}</p>
       </div>
 
       <div className={styles.cardForm__row}>

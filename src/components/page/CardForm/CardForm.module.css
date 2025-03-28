@@ -1,6 +1,6 @@
 .cardForm {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     flex-wrap: wrap;
     width: 100%;
 }
@@ -59,6 +59,7 @@
     display: flex;
     column-gap: 10px;
     flex-wrap: wrap;
+    margin-right: 10px;
 }
 
 .cardForm__expDate .cardForm__label, .cardForm__expDate .cardForm__message {
