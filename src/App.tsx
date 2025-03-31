@@ -8,8 +8,8 @@ import CardForm from './components/page/CardForm'
 
 function App() {
   const [cardTemplateData, setCardTemplateData] = useState<CardInterface>({
-    name: "",
-    number: 0,
+    name: "---",
+    number: "---- ---- ---- ----",
     expDate: {
       month: "",
       year: ""
@@ -30,17 +30,14 @@ function App() {
     setCardTemplateData(newData)
   }
 
-  const setNotValidValue = (valid: boolean) => {
-    setValueIsNotValid(valid)
-
-    setTimeout(() => {
-      setValueIsNotValid(false)
-    }, 300)
-  }
-
   const setNumber = (value: string) => {
-    const newData = cardTemplateData
-    newData.number = Number(value)
+    const newData = {
+      name: cardTemplateData.name,
+      number: value,
+      expDate: cardTemplateData.expDate,
+      cvc: cardTemplateData.cvc
+    }
+
     setCardTemplateData(newData)
   }
 
@@ -62,6 +59,14 @@ function App() {
     setCardTemplateData(newData)
   }
 
+  const setNotValidValue = (notValid: boolean) => {
+    setValueIsNotValid(notValid)
+
+    setTimeout(() => {
+      setValueIsNotValid(false)
+    }, 300)
+  }
+
   return (
     <div className='app'>
       <header className="header">
@@ -70,14 +75,17 @@ function App() {
 
       <CardTemplate
         animateCardFront={valueIsNotValid}
-        cardName={cardTemplateData.name} />
+        cardName={cardTemplateData.name}
+        cardNumber={String(cardTemplateData.number)} />
 
       <main>
         <div className="register">
 
           <CardForm
             setName={setName}
-            setNotValidName={setNotValidValue} />
+            setNotValidName={setNotValidValue}
+            setNumber={setNumber}
+            setNotValidNumber={setNotValidValue} />
 
         </div>
       </main>

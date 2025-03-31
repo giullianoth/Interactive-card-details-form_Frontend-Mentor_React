@@ -5,9 +5,10 @@ import cardLogo from "/images/card-logo.svg"
 export interface CardFrontProps {
   alertClassName: string
   cardName: string
+  cardNumber: string
 }
 
-const CardFront = ({ alertClassName, cardName }: CardFrontProps) => {
+const CardFront = ({ alertClassName, cardName, cardNumber }: CardFrontProps) => {
   return (
     <div className={`${styles.cardFront} ${alertClassName}`}>
       <img src={cardTemplateFront} alt="Card Front" className={styles.card} />
@@ -17,7 +18,7 @@ const CardFront = ({ alertClassName, cardName }: CardFrontProps) => {
       </div>
 
       <div className={styles.cardFront__wrapper}>
-        <p className={styles.cardFront__number}>---- ---- ---- ----</p>
+        <p className={styles.cardFront__number}>{cardNumber}</p>
         <p className={styles.cardFront__name}>{cardName}</p>
         <p className={styles.cardFront__expDate}>--/--</p>
       </div>

@@ -1,15 +1,20 @@
 import CardFormName from "../../formFields/CardFormName"
+import CardFormNumber from "../../formFields/CardFormNumber"
 import styles from "./CardForm.module.css"
 
 export interface CardFormProps {
   setName: Function
   setNotValidName: Function
+  setNumber: Function
+  setNotValidNumber: Function
 }
 
-const CardForm = ({ setName, setNotValidName }: CardFormProps) => {
+const CardForm = ({ setName, setNotValidName, setNumber, setNotValidNumber }: CardFormProps) => {
   return (
     <form className={styles.cardForm} autoComplete="off">
       <CardFormName setName={setName} setNotValidName={setNotValidName} />
+      <CardFormNumber setNumber={setNumber} setNotValidNumber={setNotValidNumber} />
+      
       {/* <div className={styles.cardForm__row}>
         <label htmlFor="name" className={styles.cardForm__label}>Cardholder Name</label>
 

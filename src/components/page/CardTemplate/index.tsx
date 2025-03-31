@@ -6,9 +6,10 @@ export interface CardTemplateProps {
   animateCardFront?: boolean
   animateCardBack?: boolean
   cardName: string
+  cardNumber: string
 }
 
-const CardTemplate = ({ animateCardFront, animateCardBack, cardName }: CardTemplateProps) => {
+const CardTemplate = ({ animateCardFront, animateCardBack, cardName, cardNumber }: CardTemplateProps) => {
   return (
     <aside className={styles.cardTemplate}>
       <div className={styles.cardTemplate__container}>
@@ -16,7 +17,8 @@ const CardTemplate = ({ animateCardFront, animateCardBack, cardName }: CardTempl
 
         <CardFront
           alertClassName={animateCardFront ? styles.alert : ""}
-          cardName={cardName} />
+          cardName={cardName}
+          cardNumber={cardNumber} />
       </div>
     </aside>
   )
