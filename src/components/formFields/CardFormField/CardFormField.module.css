@@ -1,0 +1,51 @@
+.cardFormField {
+    flex-basis: 100%;
+}
+
+.cardFormField.half {
+    flex-basis: calc(50% - 10px);
+}
+
+.cardFormLabel {
+    display: block;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.7em;
+}
+
+.cardFormField input {
+    width: 100%;
+    transition: var(--transition);
+}
+
+.cardFormField input.error {
+    border-color: var(--color-red-input-errors);
+}
+
+.cardFormField input:not(.error).valid,
+.cardFormField input:not(.error):focus,
+.cardFormField input:not(.error).hover {
+    border-color: transparent;
+    border-style: double;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+
+    background-image:
+        linear-gradient(to right, var(--color-white), var(--color-white)),
+        linear-gradient(to right, var(--color-linear-gradient-active-input-border));
+}
+
+.cardFormMessage {
+    font-size: 0.7em;
+    letter-spacing: normal;
+    color: var(--color-red-input-errors);
+    margin-top: 6px;
+    height: 16px;
+}
+
+@media screen and (min-width: 768px) {
+    .cardFormLabel {
+        font-size: 1em;
+    }
+}

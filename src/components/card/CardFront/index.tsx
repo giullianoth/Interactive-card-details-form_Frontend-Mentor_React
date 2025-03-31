@@ -3,11 +3,11 @@ import cardTemplateFront from "/images/bg-card-front.png"
 import cardLogo from "/images/card-logo.svg"
 
 export interface CardFrontProps {
-  nameTemplate: string
   alertClassName: string
+  cardName: string
 }
 
-const CardFront = ({ nameTemplate, alertClassName }: CardFrontProps) => {
+const CardFront = ({ alertClassName, cardName }: CardFrontProps) => {
   return (
     <div className={`${styles.cardFront} ${alertClassName}`}>
       <img src={cardTemplateFront} alt="Card Front" className={styles.card} />
@@ -18,7 +18,7 @@ const CardFront = ({ nameTemplate, alertClassName }: CardFrontProps) => {
 
       <div className={styles.cardFront__wrapper}>
         <p className={styles.cardFront__number}>---- ---- ---- ----</p>
-        <p className={styles.cardFront__name}>{nameTemplate}</p>
+        <p className={styles.cardFront__name}>{cardName}</p>
         <p className={styles.cardFront__expDate}>--/--</p>
       </div>
     </div>

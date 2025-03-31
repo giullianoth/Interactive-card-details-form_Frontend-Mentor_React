@@ -1,21 +1,22 @@
-import CardBack from "../../CardBack"
-import CardFront from "../../CardFront"
+import CardBack from "../../card/CardBack"
+import CardFront from "../../card/CardFront"
 import styles from "./CardTemplate.module.css"
 
 export interface CardTemplateProps {
-  nameTemplate: string
-  animateCard: boolean
+  animateCardFront?: boolean
+  animateCardBack?: boolean
+  cardName: string
 }
 
-const CardTemplate = ({ nameTemplate, animateCard }: CardTemplateProps) => {
+const CardTemplate = ({ animateCardFront, animateCardBack, cardName }: CardTemplateProps) => {
   return (
     <aside className={styles.cardTemplate}>
       <div className={styles.cardTemplate__container}>
-        <CardBack />
+        <CardBack alertClassName={animateCardBack ? styles.alert : ""} />
 
         <CardFront
-          nameTemplate={nameTemplate}
-          alertClassName={animateCard ? styles.alert : ""} />
+          alertClassName={animateCardFront ? styles.alert : ""}
+          cardName={cardName} />
       </div>
     </aside>
   )

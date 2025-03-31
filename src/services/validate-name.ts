@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { accentuation, cardData, specialChars } from "../definitions/variables";
 
 export default function ValidateName() {
-    const [validName, setValidName] = useState("")
+    const [validName, setValidName] = useState("---")
     const [nameErrorMessage, setNameErrorMessage] = useState("")
     const [nameError, setNameError] = useState(false)
     const [nameIsValid, setNameIsValid] = useState(false)
-    const [animeteCard, setAnimateCard] = useState(false)
     const cardNameMaxLength = 25
 
     useEffect(() => {
@@ -22,18 +21,13 @@ export default function ValidateName() {
         }
 
         if (length === 0) {
-            setAnimateCard(true)
             setNameErrorMessage("Can't be blank")
             setNameError(true)
-
-            setTimeout(() => {
-                setAnimateCard(false)
-            }, 300)
         }
 
         if (length <= cardNameMaxLength) {
             const newNameValue = length > 0
-                ? nameValue.normalize("NFD").replace(accentuation, "").replace(specialChars, "").toUpperCase()
+                ? nameValue.normalize("NFD").replace(accentuation, "").replace(specialChars, "").toUpperCase().trim()
                 : "---"
 
             setValidName(newNameValue)
@@ -45,14 +39,9 @@ export default function ValidateName() {
         const length = nameValue.length
 
         if (length === 0) {
-            setAnimateCard(true)
             setNameErrorMessage("Can't be blank")
             setNameError(true)
             valid = false
-
-            setTimeout(() => {
-                setAnimateCard(false)
-            }, 300)
         }
 
         if (valid) {
@@ -61,5 +50,5 @@ export default function ValidateName() {
         }
     }
 
-    return { validateName, validateNameOnFocusOut, validName, nameErrorMessage, nameError, nameIsValid, animeteCard }
+    return { validateName, validateNameOnFocusOut, validName, nameErrorMessage, nameError, nameIsValid }
 }

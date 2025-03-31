@@ -9,32 +9,6 @@
     flex-basis: 100%;
 }
 
-.cardForm__row.half {
-    flex-basis: calc(50% - 10px);
-    align-self: flex-end;
-}
-
-.cardForm__row input {
-    width: 100%;
-    transition: var(--transition);
-}
-
-.cardForm__row input.error {
-    border-color: var(--color-red-input-errors);
-}
-
-.cardForm__row input:not(.error).valid,
-.cardForm__row input:not(.error):focus,
-.cardForm__row input:not(.error):hover {
-    border-color: transparent;
-    border-style: double;
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    background-image:
-        linear-gradient(to right, var(--color-white), var(--color-white)),
-        linear-gradient(to right, var(--color-linear-gradient-active-input-border));
-}
-
 .cardForm__row button {
     width: 100%;
 }
@@ -45,14 +19,6 @@
     text-transform: uppercase;
     font-weight: 500;
     font-size: 0.7em;
-}
-
-.cardForm__message {
-    font-size: 0.7em;
-    letter-spacing: normal;
-    color: var(--color-red-input-errors);
-    margin-top: 6px;
-    height: 16px;
 }
 
 .cardForm__expDate {
@@ -73,10 +39,4 @@
 
 .cardForm__cvc input {
     text-align: right;
-}
-
-@media screen and (min-width: 768px) {
-    .cardForm__label {
-        font-size: initial;
-    }
 }

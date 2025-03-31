@@ -1,29 +1,28 @@
+import CardFormName from "../../formFields/CardFormName"
 import styles from "./CardForm.module.css"
 
 export interface CardFormProps {
-  nameValue: string
-  validateName: Function
-  nameError: boolean
-  nameErrorMessage: string
-  nameIsValid: boolean
+  setName: Function
+  setNotValidName: Function
 }
 
-const CardForm = ({ nameValue, validateName, nameError, nameErrorMessage, nameIsValid }: CardFormProps) => {
+const CardForm = ({ setName, setNotValidName }: CardFormProps) => {
   return (
     <form className={styles.cardForm} autoComplete="off">
-      <div className={styles.cardForm__row}>
+      <CardFormName setName={setName} setNotValidName={setNotValidName} />
+      {/* <div className={styles.cardForm__row}>
         <label htmlFor="name" className={styles.cardForm__label}>Cardholder Name</label>
 
         <input
           type="text"
           id="name"
           placeholder="e.g. Jane Appleseed"
-          value={nameValue}
-          onChange={event => validateName("input", event.target.value)}
-          onBlur={event => validateName("focusout", event.target.value)}
-          className={(nameError ? styles.error : "") + (nameIsValid ? styles.valid : "")} />
+          value={""}
+          onChange={event => {}}
+          onBlur={event => {}}
+          className={(false ? styles.error : "") + (false ? styles.valid : "")} />
 
-        <p className={styles.cardForm__message}>{nameErrorMessage}</p>
+        <p className={styles.cardForm__message}></p>
       </div>
 
       <div className={styles.cardForm__row}>
@@ -43,7 +42,7 @@ const CardForm = ({ nameValue, validateName, nameError, nameErrorMessage, nameIs
         <label htmlFor="cvc" className={styles.cardForm__label}>CVC</label>
         <input type="text" id="cvc" placeholder="e.g. 123" />
         <p className={styles.cardForm__message}></p>
-      </div>
+      </div> */}
 
       <div className={styles.cardForm__row}>
         <button type="submit">Confirm</button>
