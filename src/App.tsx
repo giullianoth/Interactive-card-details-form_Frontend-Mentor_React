@@ -17,7 +17,8 @@ function App() {
     cvc: 0
   })
 
-  const [valueIsNotValid, setValueIsNotValid] = useState(false)
+  const [valueInFrontIsNotValid, setValueInFrontIsNotValid] = useState(false)
+  const [valueInBackIsNotValid, setValueInBackIsNotValid] = useState(false)
 
   const setName = (value: string) => {
     const newData = {
@@ -54,16 +55,29 @@ function App() {
   }
 
   const setCvc = (value: string) => {
-    const newData = cardTemplateData
-    newData.cvc = Number(value)
+    const newData = {
+      name: cardTemplateData.name,
+      number: cardTemplateData.number,
+      expDate: cardTemplateData.expDate,
+      cvc: value
+    }
+
     setCardTemplateData(newData)
   }
 
-  const setNotValidValue = (notValid: boolean) => {
-    setValueIsNotValid(notValid)
+  const setNotValidValueInFront = (notValid: boolean) => {
+    setValueInFrontIsNotValid(notValid)
 
     setTimeout(() => {
-      setValueIsNotValid(false)
+      setValueInFrontIsNotValid(false)
+    }, 300)
+  }
+
+  const setNotValidValueInBack = (notValid: boolean) => {
+    setValueInBackIsNotValid(notValid)
+
+    setTimeout(() => {
+      setValueInBackIsNotValid(false)
     }, 300)
   }
 
@@ -74,18 +88,22 @@ function App() {
       </header>
 
       <CardTemplate
-        animateCardFront={valueIsNotValid}
+        animateCardFront={valueInFrontIsNotValid}
+        animateCardBack={valueInBackIsNotValid}
         cardName={cardTemplateData.name}
-        cardNumber={String(cardTemplateData.number)} />
+        cardNumber={String(cardTemplateData.number)}
+        cardCvc={String(cardTemplateData.cvc)} />
 
       <main>
         <div className="register">
 
           <CardForm
             setName={setName}
-            setNotValidName={setNotValidValue}
+            setNotValidName={setNotValidValueInFront}
             setNumber={setNumber}
-            setNotValidNumber={setNotValidValue} />
+            setNotValidNumber={setNotValidValueInFront}
+            setCvc={setCvc}
+            setNotValidCvc={setNotValidValueInBack} />
 
         </div>
       </main>

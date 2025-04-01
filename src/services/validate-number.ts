@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { accentuation, cardData, isValidNumber, pureNumber, specialChars } from "../definitions/variables";
+import { cardData, isValidNumber, pureNumber } from "../definitions/variables";
 
 export default function ValidateNumber() {
     const [validNumber, setValidNumber] = useState("---- ---- ---- ----")
@@ -92,13 +92,13 @@ export default function ValidateNumber() {
             valid = false
         }
 
-        if (length > 0 && length < cardNumberMaxLength) {
+        if (length > 0 && isValidNumber(numberValue) && length < cardNumberMaxLength) {
             setNumberErrorMessage(`Can't be less than ${cardNumberMaxLength} digits`)
             setNumberError(true)
             valid = false
         }
 
-        if (length > cardNumberMaxLength) {
+        if (isValidNumber(numberValue) && length > cardNumberMaxLength) {
             setNumberErrorMessage(`Can't be more than ${cardNumberMaxLength} digits`)
             setNumberError(true)
             valid = false

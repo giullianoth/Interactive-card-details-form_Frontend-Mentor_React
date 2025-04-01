@@ -19,6 +19,10 @@
     transition: var(--transition);
 }
 
+.cardFormField input.right {
+    text-align: right;
+}
+
 .cardFormField input.error {
     border-color: var(--color-red-input-errors);
 }

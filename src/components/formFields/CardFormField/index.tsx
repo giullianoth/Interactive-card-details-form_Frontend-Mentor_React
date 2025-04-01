@@ -9,13 +9,15 @@ export interface CardFormFieldProps {
     error: boolean
     valid: boolean
     message: string
+    half?: boolean
+    alignRight?: boolean
     double?: boolean
     secondFieldProps?: CardFormFieldProps
 }
 
-const CardFormField = ({ id, label, placeholder, value, validate, error, valid, message, double, secondFieldProps }: CardFormFieldProps) => {
+const CardFormField = ({ id, label, placeholder, value, validate, error, valid, message, half, alignRight, double, secondFieldProps }: CardFormFieldProps) => {
     return (
-        <div className={styles.cardFormField}>
+        <div className={styles.cardFormField + (half ? ` ${styles.half}` : "")}>
             <label htmlFor={id} className={styles.cardFormLabel}>{label}</label>
 
             <input
@@ -25,7 +27,9 @@ const CardFormField = ({ id, label, placeholder, value, validate, error, valid, 
                 value={value}
                 onChange={event => validate("change", event.target.value)}
                 onBlur={event => validate("focusout", event.target.value)}
-                className={(error ? styles.error : "") + (valid ? styles.valid : "")} />
+                className={(error ? styles.error : "")
+                    + (valid ? styles.valid : "")
+                    + (alignRight ? ` ${styles.right}` : "")} />
 
             {double &&
                 <input
@@ -35,7 +39,9 @@ const CardFormField = ({ id, label, placeholder, value, validate, error, valid, 
                     value={secondFieldProps?.value}
                     onChange={event => validate("change", event.target.value)}
                     onBlur={event => validate("focusout", event.target.value)}
-                    className={(error ? styles.error : "") + (valid ? styles.valid : "")} />}
+                    className={(error ? styles.error : "")
+                        + (valid ? styles.valid : "")
+                        + (alignRight ? ` ${styles.right}` : "")} />}
 
             <p className={styles.cardFormMessage}>{message}</p>
         </div>
