@@ -14,16 +14,17 @@ const CardFormName = ({ setName, setNotValidName }: CardFormNameProps) => {
     useEffect(() => {
         setName(validName)
         setNotValidName(nameError)
-    }, [nameValue, nameError])
+    }, [nameValue])
 
-    const handleValidateName = (mode: string, value: string) => {
+    const handleValidateName = (type: string, value: string) => {
         setNameValue(value)
 
-        if (mode === "change") {
+        if (type === "change") {
             validateName(value)
+            setName(validName)
         }
 
-        if (mode === "focusout") {
+        if (type === "blur") {
             validateNameOnFocusOut(value)
             setNotValidName(nameError)
         }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { cardData, isValidNumber, pureNumber } from "../definitions/variables";
 
 export default function ValidateNumber() {
@@ -7,10 +7,6 @@ export default function ValidateNumber() {
     const [numberError, setNumberError] = useState(false)
     const [numberIsValid, setNumberIsValid] = useState(false)
     const cardNumberMaxLength = 16
-
-    useEffect(() => {
-        setNumberIsValid(false)
-    }, [numberError])
 
     const numberTemplate = (num: string) => {
         let numArray = pureNumber(num).split("")
@@ -53,12 +49,14 @@ export default function ValidateNumber() {
     }
 
     const validateNumber = (numberValue: string) => {
-        const length = pureNumber(numberValue).length
+        setNumberIsValid(false)
 
         if (numberError) {
-            setNumberErrorMessage("")
             setNumberError(false)
+            setNumberErrorMessage("")
         }
+
+        const length = numberValue.length
 
         if (length === 0) {
             setNumberErrorMessage("Can't be blank")
@@ -70,15 +68,13 @@ export default function ValidateNumber() {
             setNumberError(true)
         }
 
-        if (length <= cardNumberMaxLength) {
-            const newNumberValue = numberTemplate(numberValue)
-            setValidNumber(newNumberValue)
-        }
+        const newValue = numberTemplate(numberValue)
+        setValidNumber(newValue)
     }
 
     const validateNumberOnFocusOut = (numberValue: string) => {
         let valid = true
-        const length = pureNumber(numberValue).length
+        const length = numberValue.length
 
         if (length === 0) {
             setNumberErrorMessage("Can't be blank")
@@ -106,9 +102,11 @@ export default function ValidateNumber() {
 
         if (valid) {
             setNumberIsValid(true)
-            cardData.number = Number(pureNumber(validNumber))
+            cardData.number = Number(numberValue)
+
+            console.log(cardData);
         }
     }
 
-    return { numberTemplate, filteredNumber, validateNumber, validateNumberOnFocusOut, validNumber, numberErrorMessage, numberError, numberIsValid }
+    return { numberTemplate, filteredNumber, validateNumber, validateNumberOnFocusOut, validNumber, numberErrorMessage, numberError, numberIsValid, cardNumberMaxLength }
 }

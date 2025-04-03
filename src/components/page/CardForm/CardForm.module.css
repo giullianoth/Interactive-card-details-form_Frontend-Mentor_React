@@ -1,6 +1,6 @@
 .cardForm {
     display: flex;
-    gap: 10px;
+    gap: 10px 20px;
     flex-wrap: wrap;
     width: 100%;
 }
@@ -19,24 +19,4 @@
     text-transform: uppercase;
     font-weight: 500;
     font-size: 0.7em;
-}
-
-.cardForm__expDate {
-    display: flex;
-    column-gap: 10px;
-    flex-wrap: wrap;
-    margin-right: 10px;
-}
-
-.cardForm__expDate .cardForm__label, .cardForm__expDate .cardForm__message {
-    flex-basis: 100%;
-}
-
-.cardForm__expDate input {
-    flex-basis: calc(50% - 5px);
-    text-align: right;
-}
-
-.cardForm__cvc input {
-    text-align: right;
 }

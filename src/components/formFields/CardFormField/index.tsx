@@ -17,7 +17,9 @@ export interface CardFormFieldProps {
 
 const CardFormField = ({ id, label, placeholder, value, validate, error, valid, message, half, alignRight, double, secondFieldProps }: CardFormFieldProps) => {
     return (
-        <div className={styles.cardFormField + (half ? ` ${styles.half}` : "")}>
+        <div className={styles.cardFormField
+            + (half ? ` ${styles.half}` : "")
+            + (double ? ` ${styles.double}` : "")}>
             <label htmlFor={id} className={styles.cardFormLabel}>{label}</label>
 
             <input
@@ -25,10 +27,10 @@ const CardFormField = ({ id, label, placeholder, value, validate, error, valid, 
                 id={id}
                 placeholder={placeholder}
                 value={value}
-                onChange={event => validate("change", event.target.value)}
-                onBlur={event => validate("focusout", event.target.value)}
-                className={(error ? styles.error : "")
-                    + (valid ? styles.valid : "")
+                onChange={event => validate(event.type, event.target.value)}
+                onBlur={event => validate(event.type, event.target.value)}
+                className={(error && !valid ? styles.error : "")
+                    + (valid && !error ? styles.valid : "")
                     + (alignRight ? ` ${styles.right}` : "")} />
 
             {double &&
@@ -37,11 +39,11 @@ const CardFormField = ({ id, label, placeholder, value, validate, error, valid, 
                     id={secondFieldProps?.id}
                     placeholder={secondFieldProps?.placeholder}
                     value={secondFieldProps?.value}
-                    onChange={event => validate("change", event.target.value)}
-                    onBlur={event => validate("focusout", event.target.value)}
-                    className={(error ? styles.error : "")
-                        + (valid ? styles.valid : "")
-                        + (alignRight ? ` ${styles.right}` : "")} />}
+                    onChange={event => secondFieldProps?.validate(event.type, event.target.value)}
+                    onBlur={event => secondFieldProps?.validate(event.type, event.target.value)}
+                    className={(secondFieldProps?.error && !secondFieldProps?.valid ? styles.error : "")
+                        + (secondFieldProps?.valid && !secondFieldProps?.error ? styles.valid : "")
+                        + (secondFieldProps?.alignRight ? ` ${styles.right}` : "")} />}
 
             <p className={styles.cardFormMessage}>{message}</p>
         </div>

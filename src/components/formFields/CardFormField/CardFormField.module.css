@@ -4,6 +4,22 @@
 
 .cardFormField.half {
     flex-basis: calc(50% - 10px);
+    align-self: flex-end;
+}
+
+.cardFormField.double {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+}
+
+.cardFormField.double .cardFormLabel,
+.cardFormField.double .cardFormMessage {
+    flex-basis: 100%;
+}
+
+.cardFormField.double input {
+    flex-basis: calc(50% - 5px);
 }
 
 .cardFormLabel {

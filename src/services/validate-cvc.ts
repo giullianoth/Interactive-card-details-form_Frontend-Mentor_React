@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { cardData, isValidNumber, pureNumber } from "../definitions/variables";
 
 export default function ValidateCvc() {
@@ -7,10 +7,6 @@ export default function ValidateCvc() {
     const [cvcError, setCvcError] = useState(false)
     const [cvcIsValid, setCvcIsValid] = useState(false)
     const cardCvcMaxLength = 3
-
-    useEffect(() => {
-        setCvcIsValid(false)
-    }, [cvcError])
 
     const cvcTemplate = (num: string) => {
         let numArray = pureNumber(num).split("")
@@ -22,12 +18,14 @@ export default function ValidateCvc() {
     }
 
     const validateCvc = (cvcValue: string) => {
-        const length = cvcValue.length
+        setCvcIsValid(false)
 
         if (cvcError) {
-            setCvcErrorMessage("")
             setCvcError(false)
+            setCvcErrorMessage("")
         }
+
+        const length = cvcValue.length
 
         if (length === 0) {
             setCvcErrorMessage("Can't be blank")
@@ -39,10 +37,8 @@ export default function ValidateCvc() {
             setCvcError(true)
         }
 
-        if (length <= cardCvcMaxLength) {
-            const newCvcValue = cvcTemplate(cvcValue)
-            setValidCvc(newCvcValue)
-        }
+        const newValue = cvcTemplate(cvcValue)
+        setValidCvc(newValue)
     }
 
     const validateCvcOnFocusOut = (cvcValue: string) => {
@@ -75,8 +71,9 @@ export default function ValidateCvc() {
 
         if (valid) {
             setCvcIsValid(true)
-            cardData.cvc = Number(pureNumber(validCvc))
-            console.log(cvcError);
+            cardData.cvc = Number(cvcValue)
+
+            console.log(cardData);
         }
     }
 

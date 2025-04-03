@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { accentuation, cardData, specialChars } from "../definitions/variables";
 
 export default function ValidateName() {
@@ -8,17 +8,15 @@ export default function ValidateName() {
     const [nameIsValid, setNameIsValid] = useState(false)
     const cardNameMaxLength = 25
 
-    useEffect(() => {
-        setNameIsValid(false)
-    }, [nameError])
-
     const validateName = (nameValue: string) => {
-        const length = nameValue.length
+        setNameIsValid(false)
 
         if (nameError) {
-            setNameErrorMessage("")
             setNameError(false)
+            setNameErrorMessage("")
         }
+
+        const length = nameValue.length
 
         if (length === 0) {
             setNameErrorMessage("Can't be blank")
@@ -26,16 +24,33 @@ export default function ValidateName() {
         }
 
         if (length <= cardNameMaxLength) {
-            const newNameValue = length > 0
-                ? nameValue.normalize("NFD").replace(accentuation, "").replace(specialChars, "").toUpperCase().trim()
+            let newValue = length
+                ? nameValue
+                    .normalize("NFD")
+                    .replace(accentuation, "")
+                    .replace(specialChars, "")
+                    .toUpperCase()
+                    .trim()
                 : "---"
 
-            setValidName(newNameValue)
+            if (newValue.length === 0) {
+                newValue = "---"
+            }
+
+            setValidName(newValue)
         }
     }
 
     const validateNameOnFocusOut = (nameValue: string) => {
         let valid = true
+
+        const currentValue = nameValue
+            .normalize("NFD")
+            .replace(accentuation, "")
+            .replace(specialChars, "")
+            .toUpperCase()
+            .trim()
+
         const length = nameValue.length
 
         if (length === 0) {
@@ -44,9 +59,17 @@ export default function ValidateName() {
             valid = false
         }
 
+        if (length > 0 && !currentValue) {
+            setNameErrorMessage("Wrong format, can't use special characters")
+            setNameError(true)
+            valid = false
+        }
+
         if (valid) {
             setNameIsValid(true)
             cardData.name = validName
+
+            console.log(cardData);
         }
     }
 

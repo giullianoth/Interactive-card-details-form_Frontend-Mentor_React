@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import ValidateNumber from "../../../services/validate-number"
 import CardFormField from "../CardFormField"
+import { pureNumber } from "../../../definitions/variables"
 
 export interface CardFormNumberProps {
     setNumber: Function
@@ -9,22 +10,27 @@ export interface CardFormNumberProps {
 
 const CardFormNumber = ({ setNumber, setNotValidNumber }: CardFormNumberProps) => {
     const [numberValue, setNumberValue] = useState("")
-    const { validNumber, numberError, numberIsValid, numberErrorMessage, validateNumber, validateNumberOnFocusOut, filteredNumber } = ValidateNumber()
+    const { validNumber, numberError, numberIsValid, numberErrorMessage, validateNumber, validateNumberOnFocusOut, filteredNumber, cardNumberMaxLength } = ValidateNumber()
 
     useEffect(() => {
         setNumber(validNumber)
         setNotValidNumber(numberError)
-    }, [numberValue, numberError])
+    }, [numberValue])
 
-    const handleValidateNumber = (mode: string, value: string) => {
-        setNumberValue(filteredNumber(value))
+    const handleValidateNumber = (type: string, value: string) => {
+        const currentValue = pureNumber(value).length > cardNumberMaxLength
+            ? pureNumber(value).substring(0, pureNumber(value).length - 1)
+            : pureNumber(value)
 
-        if (mode === "change") {
-            validateNumber(value)
+        setNumberValue(filteredNumber(currentValue))
+
+        if (type === "change") {
+            validateNumber(pureNumber(currentValue))
+            setNumber(validNumber)
         }
 
-        if (mode === "focusout") {
-            validateNumberOnFocusOut(value)
+        if (type === "blur") {
+            validateNumberOnFocusOut(pureNumber(currentValue))
             setNotValidNumber(numberError)
         }
     }

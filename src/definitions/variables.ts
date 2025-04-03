@@ -11,9 +11,6 @@ export const isValidNumber = (value: string) => pureNumber(value).match(onlyNumb
 export const cardData: CardInterface = {
     name: "",
     number: 0,
-    expDate: {
-        month: "",
-        year: ""
-    },
+    expDate: "",
     cvc: 0
 }

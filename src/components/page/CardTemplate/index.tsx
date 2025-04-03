@@ -7,10 +7,14 @@ export interface CardTemplateProps {
   animateCardBack?: boolean
   cardName: string
   cardNumber: string
+  cardExpdateMonth: string
+  cardExpdateYear: string
   cardCvc: string
 }
 
-const CardTemplate = ({ animateCardFront, animateCardBack, cardName, cardNumber, cardCvc }: CardTemplateProps) => {
+const CardTemplate = ({ animateCardFront, animateCardBack, cardName, cardNumber, cardExpdateMonth, cardExpdateYear, cardCvc }: CardTemplateProps) => {
+  // console.log(cardExpdateMonth);
+  
   return (
     <aside className={styles.cardTemplate}>
       <div className={styles.cardTemplate__container}>
@@ -21,7 +25,9 @@ const CardTemplate = ({ animateCardFront, animateCardBack, cardName, cardNumber,
         <CardFront
           alertClassName={animateCardFront ? styles.alert : ""}
           cardName={cardName}
-          cardNumber={cardNumber} />
+          cardNumber={cardNumber}
+          cardExpdateMonth={cardExpdateMonth}
+          cardExpdateYear={cardExpdateYear} />
       </div>
     </aside>
   )

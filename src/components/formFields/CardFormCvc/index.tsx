@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react"
 import CardFormField from "../CardFormField"
 import ValidateCvc from "../../../services/validate-cvc"
-import { pureNumber } from "../../../definitions/variables"
 
 export interface CardFormCvcProps {
     setCvc: Function
     setNotValidCvc: Function
 }
-
 
 const CardFormCvc = ({ setCvc, setNotValidCvc }: CardFormCvcProps) => {
     const [cvcValue, setCvcValue] = useState("")
@@ -16,19 +14,19 @@ const CardFormCvc = ({ setCvc, setNotValidCvc }: CardFormCvcProps) => {
     useEffect(() => {
         setCvc(validCvc)
         setNotValidCvc(cvcError)
-    }, [cvcValue, cvcError])
+    }, [cvcValue])
 
-    const handleValidateCvc = (mode: string, value: string) => {
-        setCvcValue(
-            value.length > cardCvcMaxLength ? value.substring(0, value.length - 1) : value
-        )
+    const handleValidateCvc = (type: string, value: string) => {
+        const currentValue = value.length > cardCvcMaxLength ? value.substring(0, value.length - 1) : value
+        setCvcValue(currentValue.trim())
 
-        if (mode === "change") {
-            validateCvc(pureNumber(value))
+        if (type === "change") {
+            validateCvc(currentValue)
+            setCvc(validCvc)
         }
 
-        if (mode === "focusout") {
-            validateCvcOnFocusOut(pureNumber(value))
+        if (type === "blur") {
+            validateCvcOnFocusOut(currentValue)
             setNotValidCvc(cvcError)
         }
     }
